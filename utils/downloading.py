@@ -315,6 +315,9 @@ class FlightDataDownloader(object):
             response_zip_data = zipfile.ZipFile(io.BytesIO(response.content))
             response_data = response_zip_data.open(response_zip_data.namelist()[0])
 
-            return response_data.readlines()
+            data = response_data.read().decode("utf-8")
+            response_zip_data.close()
+
+            return data
         except Exception as e:
             logging.error(e)
