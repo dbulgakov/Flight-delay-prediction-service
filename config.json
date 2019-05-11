@@ -1,8 +1,9 @@
 {
   "DEFAULT": {
-    "FLIGHT_DATA": "historical_data",
-    "WEATHER_DATA": "weather_data",
+    "FLIGHT_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/historical_data",
+    "WEATHER_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/weather_data",
     "NOAA_WEATHER_API_KEY": "oGdHXKmvjrAfoVZsrATGRxcfIFlMTqZx",
+    "WEATHER_CITY_CODES": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/dictionaries/weather_city_codes_info.csv",
     "WORKING_YEARS": [2017, 2018]
   }
 }
