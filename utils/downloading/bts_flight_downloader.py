@@ -5,7 +5,10 @@ import io
 import logging
 
 
-class FlightDataDownloader(object):
+__all__ = ['BTSFlightDataDownloader']
+
+
+class BTSFlightDataDownloader(object):
     @property
     def __common_data_fields(self):
         return [
@@ -13,12 +16,12 @@ class FlightDataDownloader(object):
             ('DBShortName', 'On_Time'),
             ('RawDataTable', 'T_ONTIME'),
             ('varlist', (
-                'FL_DATE, COP_UNIQUE_CARRIER, CTAIL_NUM'
-                ', CORIGIN_AIRPORT_ID, CORIGIN_AIRPORT_SEQ_ID, CORIGIN_CITY_MARKET_ID'
-                ', CORIGIN, CORIGIN_CITY_NAME, CDEST_AIRPORT_ID, CDEST_AIRPORT_SEQ_ID'
-                ', CDEST_CITY_MARKET_ID, CDEST, CDEST_CITY_NAME, CCRS_DEP_TIME, CDEP_DELAY'
-                ', CARR_DELAY, CCANCELLED, CCANCELLATION_CODE, CDIVERTED, CCRS_ELAPSED_TIME'
-                ', CCARRIER_DELAY, CWEATHER_DELAY, CNAS_DELAY, CSECURITY_DELAY, CLATE_AIRCRAFT_DELAY'
+                'FL_DATE,COP_UNIQUE_CARRIER,CTAIL_NUM'
+                ',CORIGIN_AIRPORT_ID,CORIGIN_AIRPORT_SEQ_ID,CORIGIN_CITY_MARKET_ID'
+                ',CORIGIN,CORIGIN_CITY_NAME,CDEST_AIRPORT_ID,CDEST_AIRPORT_SEQ_ID'
+                ',CDEST_CITY_MARKET_ID,CDEST,CDEST_CITY_NAME,CCRS_DEP_TIME,CDEP_DELAY'
+                ',CARR_DELAY,CCANCELLED,CCANCELLATION_CODE,CDIVERTED,CCRS_ELAPSED_TIME'
+                ',CCARRIER_DELAY,CWEATHER_DELAY,CNAS_DELAY,CSECURITY_DELAY,CLATE_AIRCRAFT_DELAY'
             )),
             ('filter1', 'title='),
             ('filter2', 'title='),
@@ -255,11 +258,11 @@ class FlightDataDownloader(object):
     @property
     def __sql_query_filed(self):
         return ('sqlstr', (
-            ' SELECT QUARTER, FL_DATE, OP_UNIQUE_CARRIER, TAIL_NUM, ORIGIN_AIRPORT_ID'
-            ', ORIGIN_AIRPORT_SEQ_ID, ORIGIN_CITY_MARKET_ID, ORIGIN, ORIGIN_CITY_NAME, DEST_AIRPORT_ID'
-            ', DEST_AIRPORT_SEQ_ID, DEST_CITY_MARKET_ID, DEST, DEST_CITY_NAME, CRS_DEP_TIME, DEP_DELAY'
-            ', ARR_DELAY, CANCELLED, CANCELLATION_CODE, DIVERTED, CRS_ELAPSED_TIME, CARRIER_DELAY'
-            ', WEATHER_DELAY, NAS_DELAY, SECURITY_DELAY, LATE_AIRCRAFT_DELAY FROM T_ONTIME'
+            ' SELECT QUARTER,FL_DATE,OP_UNIQUE_CARRIER,TAIL_NUM,ORIGIN_AIRPORT_ID'
+            ',ORIGIN_AIRPORT_SEQ_ID,ORIGIN_CITY_MARKET_ID,ORIGIN,ORIGIN_CITY_NAME,DEST_AIRPORT_ID'
+            ',DEST_AIRPORT_SEQ_ID,DEST_CITY_MARKET_ID,DEST,DEST_CITY_NAME,CRS_DEP_TIME,DEP_DELAY'
+            ',ARR_DELAY,CANCELLED,CANCELLATION_CODE,DIVERTED,CRS_ELAPSED_TIME,CARRIER_DELAY'
+            ',WEATHER_DELAY,NAS_DELAY,SECURITY_DELAY,LATE_AIRCRAFT_DELAY FROM T_ONTIME'
             ' WHERE Month = {} AND YEAR = {}'
         ))
 
@@ -297,6 +300,10 @@ class FlightDataDownloader(object):
             ('Is_Zipped', '0'),
         )
 
+    @property
+    def __request_url(self):
+        return 'https://www.transtats.bts.gov/DownLoad_Table.asp'
+
     def __get_request_data(self, year, month):
         month_name = calendar.month_name[month]
         sql_query = (self.__sql_query_filed[0], self.__sql_query_filed[1].format(month, year))
@@ -309,7 +316,7 @@ class FlightDataDownloader(object):
 
     def download_fights_history(self, year, month):
         try:
-            response = requests.get('https://www.transtats.bts.gov/DownLoad_Table.asp',
+            response = requests.get(self.__request_url,
                                     headers=self.__headers_data, params=self.__params_data,
                                     cookies=self.__cookies_data, data=self.__get_request_data(year, month))
             response_zip_data = zipfile.ZipFile(io.BytesIO(response.content))
