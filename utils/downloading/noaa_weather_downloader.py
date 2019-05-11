@@ -35,7 +35,9 @@ class NOAAWeatherDownloader(object):
     def get_weather_for_city_by_id(self, city_id, start_date, end_date, limit=1000, offset=0):
         req_url = self.__request_url.format(city_id, start_date, end_date, limit, offset)
 
-        time.sleep(2)
+        logging.debug('Requesting {}'.format(req_url))
+
+        time.sleep(1)
 
         result_json = requests.get(req_url,
                                    headers={'token': self.api_key}, timeout=50)
