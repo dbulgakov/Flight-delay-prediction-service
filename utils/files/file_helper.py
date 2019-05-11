@@ -17,6 +17,17 @@ def save_binary_file(file_data, file_name, location=''):
             f_out.write(bytes_out[idx:idx+max_bytes])
 
 
+def load_binary_file(location, file_name):
+    max_bytes = 2**31 - 1
+    bytes_in = bytearray(0)
+    full_path = '{}/{}'.format(location, file_name)
+    input_size = os.path.getsize(full_path)
+    with open(full_path, 'rb') as f_in:
+        for _ in range(0, input_size, max_bytes):
+            bytes_in += f_in.read(max_bytes)
+    return pickle.loads(bytes_in)
+
+
 def ensure_directory(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
