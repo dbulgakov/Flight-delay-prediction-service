@@ -1,0 +1,8 @@
+{
+  "DEFAULT": {
+    "FLIGHT_DATA": "historical_data",
+    "WEATHER_DATA": "weather_data",
+    "NOAA_WEATHER_API_KEY": "oGdHXKmvjrAfoVZsrATGRxcfIFlMTqZx",
+    "WORKING_YEARS": [2017, 2018]
+  }
+}
