@@ -52,5 +52,7 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-/data
+/data/historical_data
+/data/merged_data.csv.csv
+/data/merged_data.pickle
 

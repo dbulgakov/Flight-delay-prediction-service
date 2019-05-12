@@ -5,7 +5,7 @@
     "MERGED_DATA_FILE_BIN": "merged_data.pickle",
     "FLIGHT_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/historical_data",
     "WEATHER_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/weather_data",
-    "NOAA_WEATHER_API_KEY": "oGdHXKmvjrAfoVZsrATGRxcfIFlMTqZx",
+    "NOAA_WEATHER_API_KEY": "taVpKgqJVXUNObiAusQqTPdKHfBTQLEe",
     "WEATHER_CITY_CODES": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/dictionaries/weather_city_codes_info.csv",
     "WORKING_YEARS": [2017, 2018]
   }

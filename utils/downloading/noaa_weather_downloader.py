@@ -2,7 +2,6 @@ import pandas as pd
 import logging
 import requests
 import json
-import time
 
 __all__ = ['NOAAWeatherDownloader']
 
@@ -36,8 +35,6 @@ class NOAAWeatherDownloader(object):
         req_url = self.__request_url.format(city_id, start_date, end_date, limit, offset)
 
         logging.debug('Requesting {}'.format(req_url))
-
-        time.sleep(1)
 
         result_json = requests.get(req_url,
                                    headers={'token': self.api_key}, timeout=50)
