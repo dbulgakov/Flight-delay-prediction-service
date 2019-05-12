@@ -3,6 +3,7 @@
     "MERGED_DATA_LOCATION": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data",
     "MERGED_DATA_FILE": "merged_data.csv",
     "MERGED_DATA_FILE_BIN": "merged_data.pickle",
+    "PREPROCESSED_DATA_FILE_BIN": "preprocessed_data.pickle",
     "FLIGHT_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/historical_data",
     "WEATHER_DATA": "/Users/bulhakovdmytro/Documents/flight_delays.nosync/data/weather_data",
     "NOAA_WEATHER_API_KEY": "taVpKgqJVXUNObiAusQqTPdKHfBTQLEe",
