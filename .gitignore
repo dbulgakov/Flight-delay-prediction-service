@@ -53,6 +53,6 @@ fabric.properties
 .idea/httpRequests
 
 /data/historical_data
-/data/merged_data.csv.csv
+/data/merged_data.csv
 /data/merged_data.pickle
 
