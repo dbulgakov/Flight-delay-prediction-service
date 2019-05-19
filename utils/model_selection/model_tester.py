@@ -5,7 +5,7 @@ __all__ = ['ModelTester']
 
 
 class ModelTester:
-    def __init__(self, parameters, model, rnd_state, scoring='f1_weighted', njobs=-1, cv=3):
+    def __init__(self, parameters, model, rnd_state, scoring='f1_macro', njobs=-1, cv=3):
         self.cv = RandomizedSearchCV(model, param_distributions=parameters, random_state=rnd_state, scoring=scoring, n_jobs=njobs, cv=cv, verbose=1)
 
     def test_model(self, x_train, y_train):
